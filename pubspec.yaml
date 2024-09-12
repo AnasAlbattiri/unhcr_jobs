@@ -1,0 +1,44 @@
+name: unhcr_jobs
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+
+environment:
+  sdk: ^3.5.0
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  get: ^4.6.6
+  http: ^1.2.2
+  animate_do: ^3.3.4
+  flutter_spinkit: ^5.2.1
+  shimmer: ^3.0.0
+
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Circular
+      fonts:
+        - asset: assets/fonts/circular-std-medium-500.ttf
