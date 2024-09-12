@@ -20,33 +20,64 @@ class _JobsScreenState extends State<JobsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(screenWidth * 0.05),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BounceInDown(
-                  child: const HeaderSection(),
+                  child: const SizedBox(
+                    width: double.infinity,
+                    child: HeaderSection(),
+                  ),
                 ),
-                const SizedBox(height: 40),
+                SizedBox(height: screenHeight * 0.05),
                 SlideInLeft(
-                  child: const SearchSection(),
+                  child: const SizedBox(
+                    width: double.infinity,
+                    child: SearchSection(),
+                  ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: screenHeight * 0.02),
                 FadeInUp(
-                  child: const SliderSection(),
+                  child: const SizedBox(
+                    width: double.infinity,
+                    child: SliderSection(),
+                  ),
                 ),
-                const SizedBox(height: 16),
-                SlideInRight(
-                  child: const RecommendationSection(),
+                SizedBox(height: screenHeight * 0.02),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    return isPortrait
+                        ? SlideInRight(
+                      child: const SizedBox(
+                        width: double.infinity,
+                        child: RecommendationSection(),
+                      ),
+                    )
+                        : SlideInRight(
+                      child: SizedBox(
+                        width: constraints.maxWidth * 0.8,
+                        child: const RecommendationSection(),
+                      ),
+                    );
+                  },
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: screenHeight * 0.03),
                 SlideInUp(
-                  child: const RecentJobsSection(),
+                  child: const SizedBox(
+                    width: double.infinity,
+                    child: RecentJobsSection(),
+                  ),
                 ),
               ],
             ),

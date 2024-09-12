@@ -12,39 +12,49 @@ class JobsDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: wColor,
       appBar: appBar(context),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(screenWidth * 0.05),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FadeInDown(
                 duration: const Duration(milliseconds: 500),
-                child: JobDetailsCard(
-                  jobsModel: jobsModel,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: JobDetailsCard(
+                    jobsModel: jobsModel,
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: screenHeight * 0.03),
               SlideInLeft(
                 duration: const Duration(milliseconds: 500),
                 child: defaultText(
                   text: 'Job Description',
                   color: bColor,
-                  fontSize: 18,
+                  fontSize: screenWidth * 0.045,
                 ),
               ),
-              const SizedBox(height: 8),
-              FadeInUp(
-                duration: const Duration(milliseconds: 500),
-                child: Text(
-                  jobsModel.longDescription,
-                  style: TextStyle(
-                    fontFamily: 'Circular',
-                    fontSize: 12,
-                    color: Colors.grey[600]!,
+              SizedBox(height: screenHeight * 0.01),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: FadeInUp(
+                    duration: const Duration(milliseconds: 500),
+                    child: Text(
+                      jobsModel.longDescription,
+                      style: TextStyle(
+                        fontFamily: 'Circular',
+                        fontSize: screenWidth * 0.035,
+                        color: Colors.grey[600]!,
+                      ),
+                    ),
                   ),
                 ),
               ),
